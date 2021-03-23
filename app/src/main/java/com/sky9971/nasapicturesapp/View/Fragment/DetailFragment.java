@@ -2,6 +2,7 @@ package com.sky9971.nasapicturesapp.View.Fragment;
 
 import android.os.Bundle;
 
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -36,6 +37,8 @@ public class DetailFragment extends Fragment implements onSwipeCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentDetailBinding.inflate(inflater,container,false);
+//        ViewCompat.setTransitionName(binding.image,"image_tx");
+//        ViewCompat.setTransitionName(binding.title,"title_tx");
         viewModel.getPictureData().observe(getViewLifecycleOwner(), new Observer<PictureModel>() {
             @Override
             public void onChanged(PictureModel pictureModel) {

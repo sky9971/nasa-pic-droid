@@ -1,5 +1,8 @@
 package com.sky9971.nasapicturesapp.ViewModel;
 
+import android.os.Parcelable;
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 

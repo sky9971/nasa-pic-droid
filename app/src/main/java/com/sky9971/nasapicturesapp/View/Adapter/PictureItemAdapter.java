@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.navigation.fragment.FragmentNavigator;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.drawable.ProgressBarDrawable;
@@ -17,6 +19,7 @@ import com.sky9971.nasapicturesapp.R;
 import com.sky9971.nasapicturesapp.Util.PictureTap;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PictureItemAdapter extends RecyclerView.Adapter<PictureItemViewHolder>{
     private ArrayList<PictureModel> list;
@@ -47,7 +50,15 @@ public class PictureItemAdapter extends RecyclerView.Adapter<PictureItemViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tap.PictureClick(position);
+                HashMap<View,String> elements = new HashMap<>();
+                elements.put(holder.binding.imageView,"image_tx");
+                elements.put(holder.binding.pictureTitle,"title_tx");
+//                ViewCompat.setTransitionName(holder.binding.imageView,"image_tx");
+//                ViewCompat.setTransitionName(holder.binding.pictureTitle,"title_tx");
+                FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
+                        .addSharedElements(elements)
+                        .build();
+                tap.PictureClick(position,extras);
             }
         });
     }

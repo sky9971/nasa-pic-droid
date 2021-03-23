@@ -3,17 +3,21 @@ package com.sky9971.nasapicturesapp.View.Fragment;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.FragmentNavigator;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.sky9971.nasapicturesapp.Model.PictureModel;
 import com.sky9971.nasapicturesapp.R;
 import com.sky9971.nasapicturesapp.Util.PictureTap;
@@ -21,7 +25,11 @@ import com.sky9971.nasapicturesapp.View.Adapter.PictureItemAdapter;
 import com.sky9971.nasapicturesapp.ViewModel.PictureViewModel;
 import com.sky9971.nasapicturesapp.databinding.FragmentGridBinding;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class GridFragment extends Fragment implements PictureTap {
@@ -47,7 +55,7 @@ public class GridFragment extends Fragment implements PictureTap {
         }
         manager = new GridLayoutManager(getContext(),2);
         viewModel.getLivedata().observe(getViewLifecycleOwner(),pictureObserver);
-        if(state != null) {
+        if(state!=null){
             manager.onRestoreInstanceState(state);
         }
         return binding.getRoot();
@@ -72,7 +80,7 @@ public class GridFragment extends Fragment implements PictureTap {
     }
 
     @Override
-    public void PictureClick(int position) {
+    public void PictureClick(int position, FragmentNavigator.Extras extras) {
         viewModel.updateModel(position);
         Navigation.findNavController(binding.getRoot()).navigate(R.id.detailAction);
     }

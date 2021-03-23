@@ -10,9 +10,11 @@
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/image_view"
             android:layout_width="match_parent"
+            android:transitionName="image_tx"
             app:overlayImage="@color/cardview_shadow_end_color"
             android:layout_height="250dp"/>
         <TextView
+            android:transitionName="title_tx"
             android:id="@+id/picture_title"
             android:textAlignment="center"
             android:layout_margin="10dp"
