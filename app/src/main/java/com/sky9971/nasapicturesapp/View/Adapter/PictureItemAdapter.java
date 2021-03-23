@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.sky9971.nasapicturesapp.Model.PictureModel;
 import com.sky9971.nasapicturesapp.R;
 
