@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.os.Parcelable;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.sky9971.nasapicturesapp.Model.PictureModel;
 import com.sky9971.nasapicturesapp.R;
+import com.sky9971.nasapicturesapp.Util.PictureTap;
 import com.sky9971.nasapicturesapp.View.Adapter.PictureItemAdapter;
 import com.sky9971.nasapicturesapp.ViewModel.PictureViewModel;
 import com.sky9971.nasapicturesapp.databinding.FragmentGridBinding;
@@ -22,7 +24,7 @@ import com.sky9971.nasapicturesapp.databinding.FragmentGridBinding;
 import java.util.ArrayList;
 
 
-public class GridFragment extends Fragment {
+public class GridFragment extends Fragment implements PictureTap {
 
     private FragmentGridBinding binding;
     private PictureItemAdapter adapter;
@@ -54,7 +56,7 @@ public class GridFragment extends Fragment {
     Observer<ArrayList<PictureModel>> pictureObserver = new Observer<ArrayList<PictureModel>>() {
         @Override
         public void onChanged(ArrayList<PictureModel> pictureModels) {
-            adapter = new PictureItemAdapter(getContext(),viewModel.getLivedata().getValue());
+            adapter = new PictureItemAdapter(getContext(),viewModel.getLivedata().getValue(),GridFragment.this::PictureClick);
             binding.list.setLayoutManager(manager);
             binding.list.setAdapter(adapter);
         }
@@ -67,5 +69,11 @@ public class GridFragment extends Fragment {
             state = manager.onSaveInstanceState();
             outState.putParcelable("list", state);
         }
+    }
+
+    @Override
+    public void PictureClick(int position) {
+        viewModel.updateModel(position);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.detailAction);
     }
 }
