@@ -9,9 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sky9971.nasapicturesapp.R;
+import com.sky9971.nasapicturesapp.databinding.FragmentDetailBinding;
 
 
 public class DetailFragment extends Fragment {
+
+    private FragmentDetailBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,7 +24,7 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false);
+        binding = FragmentDetailBinding.inflate(inflater,container,false);
+        return binding.getRoot();
     }
 }
