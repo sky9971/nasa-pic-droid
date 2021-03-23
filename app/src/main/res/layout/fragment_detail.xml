@@ -10,13 +10,25 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <com.facebook.drawee.view.SimpleDraweeView
                 android:contentDescription="@string/image_content_description"
                 android:id="@+id/image"
                 android:transitionName="image_tx"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"/>
-
+                <ImageButton
+                    android:contentDescription="@string/loading"
+                    android:id="@+id/back"
+                    android:layout_margin="10dp"
+                    android:background="#00FFFFFF"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
             <TextView
                 android:padding="10dp"
                 android:id="@+id/title"

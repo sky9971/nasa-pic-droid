@@ -6,6 +6,7 @@ import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,12 @@ public class DetailFragment extends Fragment implements onSwipeCallback {
         });
         setData(viewModel.getPictureData().getValue());
         binding.getRoot().setOnTouchListener(new SwipeTouchListener(getContext(),this));
+        binding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(binding.getRoot()).navigateUp();
+            }
+        });
         return binding.getRoot();
     }
 
