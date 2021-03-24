@@ -80,7 +80,7 @@ public class GridFragment extends Fragment implements PictureTap {
     }
 
     @Override
-    public void PictureClick(int position, FragmentNavigator.Extras extras) {
+    public void PictureClick(int position) {
         viewModel.updateModel(position);
         Navigation.findNavController(binding.getRoot()).navigate(R.id.detailAction);
     }

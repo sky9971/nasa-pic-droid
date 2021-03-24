@@ -50,15 +50,7 @@ public class PictureItemAdapter extends RecyclerView.Adapter<PictureItemViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                HashMap<View,String> elements = new HashMap<>();
-                elements.put(holder.binding.imageView,"image_tx");
-                elements.put(holder.binding.pictureTitle,"title_tx");
-//                ViewCompat.setTransitionName(holder.binding.imageView,"image_tx");
-//                ViewCompat.setTransitionName(holder.binding.pictureTitle,"title_tx");
-                FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
-                        .addSharedElements(elements)
-                        .build();
-                tap.PictureClick(position,extras);
+                tap.PictureClick(position);
             }
         });
     }
