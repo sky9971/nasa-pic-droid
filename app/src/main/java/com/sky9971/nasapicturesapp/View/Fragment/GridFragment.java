@@ -35,7 +35,6 @@ import java.util.Map;
 public class GridFragment extends Fragment implements PictureTap {
 
     private FragmentGridBinding binding;
-    private PictureItemAdapter adapter;
     private GridLayoutManager manager;
     private Parcelable state;
     private PictureViewModel viewModel;
@@ -64,7 +63,7 @@ public class GridFragment extends Fragment implements PictureTap {
     Observer<ArrayList<PictureModel>> pictureObserver = new Observer<ArrayList<PictureModel>>() {
         @Override
         public void onChanged(ArrayList<PictureModel> pictureModels) {
-            adapter = new PictureItemAdapter(getContext(),viewModel.getLivedata().getValue(),GridFragment.this::PictureClick);
+            PictureItemAdapter adapter = new PictureItemAdapter(getContext(), viewModel.getLivedata().getValue(), GridFragment.this);
             binding.list.setLayoutManager(manager);
             binding.list.setAdapter(adapter);
         }

@@ -11,12 +11,12 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 
@@ -111,24 +111,25 @@ public class PictureViewModel extends ViewModel {
             e.printStackTrace();
         }
         final DateFormat f = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        Collections.sort(models, new Comparator<PictureModel>() {
-            @Override
-            public int compare(PictureModel pictureModel, PictureModel t1) {
-                try {
-                    Date d1 = f.parse(pictureModel.getDate());
-                    Date d2 = f.parse(t1.getDate());
+        Collections.sort(models, (pictureModel, t1) -> {
+            try {
+                Date d1 = f.parse(pictureModel.getDate());
+                Date d2 = f.parse(t1.getDate());
+                if(d1.getTime() == d2.getTime()){
+                    return 0;
+                }else {
                     return (d1.getTime() > d2.getTime() ? -1 : 1);
-//                return pictureModel.getDate().compareTo(t1.getDate());
-                } catch (ParseException e) {
-                    throw new IllegalArgumentException(e);
                 }
+//                return pictureModel.getDate().compareTo(t1.getDate());
+            } catch (ParseException e) {
+                throw new IllegalArgumentException(e);
             }
         });
         livedata.postValue(models);
     }
 
     private String readAssetFile(){
-        String json = null;
+        String json;
         try {
             if(ApplicationController.getInstance()==null){
                 return dummy_data;
@@ -138,7 +139,7 @@ public class PictureViewModel extends ViewModel {
             byte[] buffer = new byte[size];
             is.read(buffer);
             is.close();
-            json = new String(buffer, "UTF-8");
+            json = new String(buffer, StandardCharsets.UTF_8);
         } catch (IOException ex) {
             ex.printStackTrace();
             return dummy_data;
@@ -146,7 +147,7 @@ public class PictureViewModel extends ViewModel {
         return json;
     }
 
-    private static String dummy_data = "[\n" +
+    private static final String dummy_data = "[\n" +
             "        {\n" +
             "        \"copyright\": \"ESA/HubbleNASA\",\n" +
             "        \"date\": \"2019-12-01\",\n" +

@@ -2,6 +2,7 @@ package com.sky9971.nasapicturesapp.View.Fragment;
 
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -73,8 +74,9 @@ public class DetailFragment extends Fragment implements onSwipeCallback {
         String service = "Service Version: "+model.getServiceVersion();
         binding.title.setText(model.getTitle());
         binding.image.setImageURI(model.getImage());
-        binding.image.getHierarchy().setFailureImage(getContext().getDrawable(R.drawable.ic_baseline_error_outline_24));
-        binding.image.getHierarchy().setRetryImage(getContext().getDrawable(R.drawable.ic_baseline_refresh_24));
+
+        binding.image.getHierarchy().setFailureImage(ContextCompat.getDrawable(getContext(),R.drawable.ic_baseline_error_outline_24));
+        binding.image.getHierarchy().setRetryImage(ContextCompat.getDrawable(getContext(),R.drawable.ic_baseline_refresh_24));
         binding.image.getHierarchy().setProgressBarImage(new ProgressBarDrawable());
         binding.description.setText(model.getExplanation());
         binding.copyright.setText(copyright);

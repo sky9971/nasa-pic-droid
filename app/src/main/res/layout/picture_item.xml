@@ -3,15 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        app:cardCornerRadius="2dp"
+        app:cardCornerRadius="8dp"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/image_view"
+            app:placeholderImageScaleType="fitCenter"
+            app:placeholderImage="@drawable/ic_baseline_image_24"
             android:layout_width="match_parent"
             android:transitionName="image_tx"
-            app:overlayImage="@color/cardview_shadow_end_color"
+            app:overlayImage="@color/overlay"
             android:layout_height="250dp"/>
         <TextView
             android:transitionName="title_tx"

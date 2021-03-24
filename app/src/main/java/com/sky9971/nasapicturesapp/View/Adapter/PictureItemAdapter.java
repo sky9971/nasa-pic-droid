@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.navigation.fragment.FragmentNavigator;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,9 +23,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PictureItemAdapter extends RecyclerView.Adapter<PictureItemViewHolder>{
-    private ArrayList<PictureModel> list;
-    private Context context;
-    private PictureTap tap;
+    private final ArrayList<PictureModel> list;
+    private final Context context;
+    private final PictureTap tap;
 
     public PictureItemAdapter(Context ctx,ArrayList<PictureModel> List,PictureTap Tap){
         context = ctx;
@@ -44,8 +45,8 @@ public class PictureItemAdapter extends RecyclerView.Adapter<PictureItemViewHold
         PictureModel model = list.get(position);
         holder.binding.pictureTitle.setText(model.getTitle());
         holder.binding.imageView.setImageURI(Uri.parse(model.getUrl()));
-        holder.binding.imageView.getHierarchy().setFailureImage(context.getDrawable(R.drawable.ic_baseline_error_outline_24));
-        holder.binding.imageView.getHierarchy().setRetryImage(context.getDrawable(R.drawable.ic_baseline_refresh_24));
+        holder.binding.imageView.getHierarchy().setFailureImage(ContextCompat.getDrawable(context,R.drawable.ic_baseline_error_outline_24));
+        holder.binding.imageView.getHierarchy().setRetryImage(ContextCompat.getDrawable(context,R.drawable.ic_baseline_refresh_24));
         holder.binding.imageView.getHierarchy().setProgressBarImage(new ProgressBarDrawable());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
